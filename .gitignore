@@ -1,0 +1,25 @@
+# Local database credentials and environment secrets
+db.php
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Local administrator bootstrap script
+/create_admin.php
+# Database exports and local archives
+*.sql
+*.sql.gz
+*.zip
+*.7z
+*.bak
+/backups/
+# User documents and runtime data
+/uploads/
+/logs/
+*.log
+# Editor and operating system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
