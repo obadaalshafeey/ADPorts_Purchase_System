@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -10,13 +11,14 @@ if (isset($_SESSION["user_id"])) {
 }
 
 $error = "";
+$employee_number = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $employee_number = trim($_POST["employee_number"] ?? "");
     $password = $_POST["password"] ?? "";
 
-    if ($employee_number == "" || $password == "") {
+    if ($employee_number === "" || $password === "") {
 
         $error = "Please enter your employee number and password.";
 
@@ -56,52 +58,94 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?php include "header.php"; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Login | AD Ports Purchase System</title>
-</head>
+<div class="container d-flex align-items-center justify-content-center"
+     style="min-height: 100vh;">
 
-<body>
+    <div class="card border-0 shadow-sm w-100"
+         style="max-width: 420px;">
 
-<h2>AD Ports Purchase System</h2>
+        <div class="card-body p-4 p-md-5">
 
-<h3>Login</h3>
+            <div class="text-center mb-4">
 
-<?php if ($error != "") { ?>
+                <h3 class="fw-bold mb-2">
+                    AD Ports
+                </h3>
 
-    <p style="color: red;">
-        <?php echo htmlspecialchars($error); ?>
-    </p>
+                <p class="text-secondary mb-0">
+                    Purchase Management System
+                </p>
 
-<?php } ?>
+            </div>
 
-<form method="POST">
+            <h5 class="mb-2">Login</h5>
 
-    <label>Employee Number:</label>
-    <input
-            type="text"
-            name="employee_number"
-            required
-    >
+            <p class="text-secondary small mb-4">
+                Enter your employee number and password.
+            </p>
 
-    <br><br>
+            <?php if ($error !== "") { ?>
 
-    <label>Password:</label>
-    <input
-            type="password"
-            name="password"
-            required
-    >
+                <div class="alert alert-danger" role="alert">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
 
-    <br><br>
+            <?php } ?>
 
-    <button type="submit">Login</button>
+            <form method="POST">
 
-</form>
+                <div class="mb-3">
 
-</body>
+                    <label for="employee_number" class="form-label">
+                        Employee Number
+                    </label>
 
-</html>
+                    <input
+                            type="text"
+                            id="employee_number"
+                            name="employee_number"
+                            class="form-control"
+                            value="<?php echo htmlspecialchars($employee_number); ?>"
+                            autocomplete="username"
+                            required
+                    >
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label for="password" class="form-label">
+                        Password
+                    </label>
+
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control"
+                            autocomplete="current-password"
+                            required
+                    >
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-dark w-100">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="text-center text-secondary small mt-4 mb-0">
+                AD Ports Purchase System
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<?php include "footer.php"; ?>

@@ -36,6 +36,13 @@ if (session_status() === PHP_SESSION_NONE) {
                         Dashboard
                     </a>
                 </li>
+                <a href="create_request.php" class="nav-link">
+                    New Request
+                </a>
+
+                <a href="my_requests.php" class="nav-link">
+                    My Requests
+                </a>
 
                 <?php if (isset($_SESSION["role"]) && $_SESSION["role"] === "admin") { ?>
 
